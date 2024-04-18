@@ -37,6 +37,7 @@ echo
 echo
 cp -Rpv /home/g33j3t/env-template /data/www/snipeit/.env
 cp -Rpv /home/g33j3t/snipeit /etc/nginx/sites-available/
+mkdir -p /etc/ssl/pki/
 cp -Rpv /home/g33j3t/seeddms.crt /etc/ssl/pki/
 cp -Rpv /home/g33j3t/seeddms.key /etc/ssl/pki/
 mv /etc/php/8.1/fpm/php.ini /etc/php/8.1/fpm/php.ini-bak
