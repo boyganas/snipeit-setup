@@ -47,8 +47,6 @@ mv /data/www/snipeit/public/favicon.ico /data/www/snipeit/public/favicon.ico.ori
 cp -Rpv /home/g33j3t/favicon-oum.ico /data/www/snipeit/public/favicon.ico
 mv /data/www/snipeit/public/img/favicon.ico /data/www/snipeit/public/img/favicon.ico.ori
 cp -Rpv /home/g33j3t/favicon-oum.ico /data/www/snipeit/public/img/favicon.ico
-#mv /etc/php/8.1/fpm/pool.d/www.conf /etc/php/8.1/fpm/pool.d/www.conf-ori
-#cp -Rpv /home/g33j3t/www.conf /etc/php/8.1/fpm/pool.d/
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-bak
 cp -Rpv /home/g33j3t/nginx.conf /etc/nginx/
 echo
@@ -79,12 +77,8 @@ echo
 echo
 echo  "edit current IP | nano /data/www/snipeit/.env "
 echo
-echo
-#read -p "Press [Enter] key to restart nginx"
 systemctl restart nginx
 systemctl restart php8.1-fpm
-echo
-echo
 echo
 echo "...... FINISH ......"
 echo
