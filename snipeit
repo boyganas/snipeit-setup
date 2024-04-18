@@ -13,6 +13,9 @@ server {
     access_log /var/log/nginx/snipeit.access.log;
     error_log /var/log/nginx/snipeit.error.log;
 
+    charset utf-8;
+    gzip on;
+    gzip_types text/css application/javascript text/javascript application/x-javascript  image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon;
 
     location / {
     try_files $uri $uri/ /index.php$is_args$args;
@@ -24,5 +27,9 @@ server {
          include fastcgi_params;
          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
          fastcgi_intercept_errors on;
+    }
+
+    location ~ /\.ht {
+            deny all;
     }
 }
