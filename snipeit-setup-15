@@ -2,7 +2,7 @@
 clear
 read -p "Press [Enter] key to start installation..."
 apt update
-apt-get install -y software-properties-common dirmngr ca-certificates apt-transport-https curl sshpass unzip git zip htop bashtop duf plocate
+apt-get install -y software-properties-common dirmngr ca-certificates apt-transport-https curl unzip git zip htop duf plocate
 echo
 echo
 echo
