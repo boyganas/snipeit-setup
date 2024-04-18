@@ -57,7 +57,7 @@ unlink /etc/nginx/sites-enabled/default
 chown -R www-data:www-data /data/www/snipeit/
 chmod -R 755 /data/www/snipeit/storage
 chmod -R 755 /data/www/snipeit/public/uploads
-bash -c "echo -e '<?php\nphpinfo();\n?>' > /data/www/snipeit/public/test.php"
+bash -c "echo -e '<?php\nphpinfo();\n?>' > /data/www/snipeit/public/phpinfo.php"
 echo
 echo
 read -p "Press [Enter] key to install composer..."
