@@ -62,7 +62,8 @@ echo
 read -p "Press [Enter] key to install composer..."
 cd /home/g33j3t/
 #curl -sS https://getcomposer.org/installer | php
-cp -Rpv composer.phar /usr/local/bin/composer
+cp -Rpv /home/g33j3t/composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
 cd /data/www/snipeit
 echo
 echo
