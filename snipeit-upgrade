@@ -1,0 +1,3 @@
+sudo curl -sS https://getcomposer.org/installer | php
+cd /data/www/snipeit
+sudo -u www-data php upgrade.php

@@ -1,0 +1,107 @@
+#!/bin/bash
+clear
+read -p "Press [Enter] key to start installation..."
+apt update
+apt-get install -y software-properties-common dirmngr ca-certificates apt-transport-https curl sshpass unzip git zip htop bashtop duf plocate
+echo
+echo
+echo
+read -p "Press [Enter] key to continue MariaDB installation..."
+curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup |  bash -s -- --mariadb-server-version=10.11
+echo
+echo
+echo
+apt update && apt upgrade -y
+echo
+echo
+apt install -y nginx mariadb-server mariadb-client
+echo
+echo
+echo
+read -p "Press [Enter] key to install PHP8.1 ..."
+add-apt-repository ppa:ondrej/php
+apt install -y php8.1-{fpm,bcmath,mysql,xml,xmlrpc,curl,gd,imagick,cli,dev,imap,mbstring,opcache,soap,zip,redis,intl,sqlite3,ldap,bz2}
+mariadb -uroot -e "CREATE DATABASE snipeit_db; CREATE USER 'snipeit_user'@'localhost' IDENTIFIED BY 'oum2020'; GRANT ALL PRIVILEGES ON snipeit_db.* TO 'snipeit_user'@'localhost'; FLUSH PRIVILEGES;"
+mariadb -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'oum2020'; FLUSH PRIVILEGES;"
+mariadb -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'g33j3t'@'%' IDENTIFIED BY 'oum2020'; FLUSH PRIVILEGES;"
+cd /
+mkdir -p /data/www
+cd /data/www/
+echo
+echo
+read -p "Press [Enter] key to install Snipe-IT ..."
+echo
+echo
+git clone https://github.com/snipe/snipe-it snipeit
+echo
+echo
+cp -Rpv /home/g33j3t/env-template /data/www/snipeit/.env
+cp -Rpv /home/g33j3t/snipeit /etc/nginx/sites-available/
+cp -Rpv /home/g33j3t/seeddms.crt /etc/ssl/certs/
+cp -Rpv /home/g33j3t/seeddms.key /etc/ssl/private/
+mv /etc/php/8.1/fpm/php.ini /etc/php/8.1/fpm/php.ini-bak
+cp -Rpv /home/g33j3t/php.ini /etc/php/8.1/fpm/
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-bak
+cp -Rpv /home/g33j3t/nginx.conf /etc/nginx/
+mv /data/www/snipeit/public/favicon.ico /data/www/snipeit/public/favicon.ico.ori
+cp -Rpv /home/g33j3t/favicon-oum.ico /data/www/snipeit/public/favicon.ico
+mv /data/www/snipeit/public/img/favicon.ico /data/www/snipeit/public/img/favicon.ico.ori
+cp -Rpv /home/g33j3t/favicon-oum.ico /data/www/snipeit/public/img/favicon.ico
+#mv /etc/php/8.1/fpm/pool.d/www.conf /etc/php/8.1/fpm/pool.d/www.conf-ori
+#cp -Rpv /home/g33j3t/www.conf /etc/php/8.1/fpm/pool.d/
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-bak
+cp -Rpv /home/g33j3t/nginx.conf /etc/nginx/
+echo
+echo
+ln -s /etc/nginx/sites-available/snipeit /etc/nginx/sites-enabled/
+unlink /etc/nginx/sites-enabled/default
+chown -R www-data:www-data /data/www/snipeit/
+chmod -R 755 /data/www/snipeit/storage
+chmod -R 755 /data/www/snipeit/public/uploads
+bash -c "echo -e '<?php\nphpinfo();\n?>' > /data/www/snipeit/public/test.php"
+echo
+echo
+read -p "Press [Enter] key to install composer..."
+cd /home/g33j3t/
+#curl -sS https://getcomposer.org/installer | php
+cp -Rpv composer.phar /usr/local/bin/composer
+cd /data/www/snipeit
+echo
+echo
+composer install --no-dev --prefer-dist --no-progress --no-interaction
+echo
+echo
+php artisan key:generate
+echo
+echo
+echo "Change IP to   $(hostname -I | awk '{print $1}')   in the files below"
+echo
+echo
+echo  "edit current IP | nano /data/www/snipeit/.env "
+echo
+echo
+#read -p "Press [Enter] key to restart nginx"
+systemctl restart nginx
+systemctl restart php8.1-fpm
+echo
+echo
+echo
+echo "...... FINISH ......"
+echo
+echo
+echo "Laravel version"
+php /data/www/snipeit/artisan --version
+echo
+echo
+echo "Nginx version"
+nginx -v
+echo
+echo
+echo "Database Server version"
+mariadb --version
+echo
+echo
+echo
+echo "Continue installation in web browser using   https://$(hostname -I | awk '{print $1}')   follow instruction given"
+echo
+echo
