@@ -76,7 +76,12 @@ echo
 echo "Change IP to   $(hostname -I | awk '{print $1}')   in the files below"
 echo
 echo
-echo  "edit current IP | nano /data/www/snipeit/.env "
+echo "edit current IP | nano /data/www/snipeit/.env OR"
+echo
+echo
+echo "edit IP 10.0.6.196 to   $(hostname -I | awk '{print $1}')   in the line below"
+echo
+echo "Run in command  sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/10.0.6.196/g' /data/www/snipeit/.env"
 echo
 systemctl restart nginx
 systemctl restart php8.1-fpm
