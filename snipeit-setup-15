@@ -69,12 +69,7 @@ echo
 echo
 composer install --no-dev --prefer-dist --no-progress --no-interaction
 echo
-echo
 php artisan key:generate
-echo
-echo
-echo "Run in terminal"
-echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/$(hostname -I | awk '{print $1}')/g' /data/www/snipeit/.env"
 echo
 systemctl restart nginx
 systemctl restart php8.1-fpm
@@ -93,6 +88,9 @@ echo
 echo "Database Server version"
 mariadb --version
 echo
+echo "Run in terminal"
+echo
+echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/$(hostname -I | awk '{print $1}')/g' /data/www/snipeit/.env"
 echo
 echo
 echo "Continue installation in web browser using   https://$(hostname -I | awk '{print $1}')   follow instruction given"
