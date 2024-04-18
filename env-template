@@ -4,7 +4,7 @@
 APP_ENV=production
 APP_DEBUG=false
 APP_KEY=base64:pkwNF/llE9l4rMo/ef1ivhKqzVsSnFMjVR5S5kJ2mHI=
-APP_URL=https://10.0.5.120
+APP_URL=https://10.0.6.137
 APP_TIMEZONE='Asia/Kuala_Lumpur'
 APP_LOCALE=en
 MAX_RESULTS=500
