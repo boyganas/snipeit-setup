@@ -1,12 +1,12 @@
 #!/bin/bash
 clear
-read -p "Press [Enter] key to start installation..."
+read -p "Press [Enter] key to start installation ..."
 apt update
 apt-get install -y software-properties-common dirmngr ca-certificates apt-transport-https curl unzip git zip htop duf plocate
 echo
 echo
 echo
-read -p "Press [Enter] key to continue MariaDB installation..."
+read -p "Press [Enter] key to continue MariaDB installation ..."
 curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup |  bash -s -- --mariadb-server-version=10.11
 echo
 echo
@@ -60,7 +60,7 @@ chmod -R 755 /data/www/snipeit/public/uploads
 bash -c "echo -e '<?php\nphpinfo();\n?>' > /data/www/snipeit/public/phpinfo.php"
 echo
 echo
-read -p "Press [Enter] key to install composer..."
+read -p "Press [Enter] key to install composer ..."
 cd /home/g33j3t/
 #curl -sS https://getcomposer.org/installer | php
 cp -Rpv /home/g33j3t/composer.phar /usr/local/bin/composer
@@ -97,9 +97,9 @@ echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/ $(hostname -I | 
 echo
 echo
 echo
-echo "Continue installation in web browser URL below and follow instruction given"
+echo "To finalize the Snipe-IT installation, head over to this URL in your web browser and follow the provided steps."
 echo
-echo "https://$(hostname -I | awk '{print $1}')"
+echo "      https://$(hostname -I | awk '{print $1}')"
 echo
 echo
 echo
