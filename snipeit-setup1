@@ -93,7 +93,7 @@ echo
 echo
 echo "Run in terminal line below"
 echo
-echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/ $(hostname -I | awk '{print $1}')/g' /data/www/snipeit/.env"
+echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/$(hostname -I | awk '{print $1}')/g' /data/www/snipeit/.env"
 echo
 echo
 read -p "Press [Enter] key to continue ..."
