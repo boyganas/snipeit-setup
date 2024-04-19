@@ -89,11 +89,17 @@ echo
 echo "Database Server version"
 mariadb --version
 echo
-echo "Run in terminal"
+echo
+echo
+echo "Run in terminal line below"
 echo
 echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/$(hostname -I | awk '{print $1}')/g' /data/www/snipeit/.env"
 echo
 echo
-echo "Continue installation in web browser using   https://$(hostname -I | awk '{print $1}')   follow instruction given"
+echo
+echo "Continue installation in web browser URL below and follow instruction given"
+echo
+echo "https://$(hostname -I | awk '{print $1}')"
+echo
 echo
 echo
