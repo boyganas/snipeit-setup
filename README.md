@@ -10,5 +10,5 @@ mv * /home/g33j3t
 
 sudo su
 
-bash snipeit-setup-14
+bash snipeit-setup1
 
