@@ -57,7 +57,7 @@ unlink /etc/nginx/sites-enabled/default
 chown -R www-data:www-data /data/www/snipeit/
 chmod -R 755 /data/www/snipeit/storage
 chmod -R 755 /data/www/snipeit/public/uploads
-bash -c "echo -e '<?php\nphpinfo();\n?>' > /data/www/snipeit/public/phpinfo.php"
+bash -c "echo -e '<?php\nphpinfo();\n?>' > /data/www/snipeit/public/test.php"
 echo
 echo
 read -p "Press [Enter] key to install composer ..."
@@ -74,33 +74,35 @@ php artisan key:generate
 echo
 systemctl restart nginx
 systemctl restart php8.1-fpm
-echo
-echo "...... FINISH ......"
+clear
 echo
 echo
 echo "Laravel version"
 php /data/www/snipeit/artisan --version
 echo
-echo
 echo "Nginx version"
 nginx -v
-echo
 echo
 echo "Database Server version"
 mariadb --version
 echo
 echo
 echo
-echo "Run in terminal line below"
+echo -e "\e[35m"
+echo "We're almost done!"
+echo "Execute the following command in your terminal window before proceeding to the installation URL in your web browser."
 echo
 echo "sed -i 's/APP_URL=https:\/\/10.0.6.137/APP_URL=https:\/\/$(hostname -I | awk '{print $1}')/g' /data/www/snipeit/.env"
 echo
 echo
-read -p "Press [Enter] key to continue ..."
+echo -e "\e[33m"
+echo "To finalize the installation, head over to this URL in your web browser and follow the provided steps."
 echo
-echo "To finalize the Snipe-IT installation, head over to this URL in your web browser and follow the provided steps."
+echo "https://$(hostname -I | awk '{print $1}')"
 echo
-echo "      https://$(hostname -I | awk '{print $1}')"
+#echo -e "\e[37m"
+#echo "FINISH"
+echo -e "\e[34mFINISH\e[0m"
 echo
 echo
 echo
